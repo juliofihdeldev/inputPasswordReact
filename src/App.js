@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import PasswordInput from './PasswordInput'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class Form extends Component {
+    state = {}
+    handleChange = (data) => {
+        this.setState({
+          [data.name]: data.value,
+        });
+        console.log("value", data.value)
+    }
+    
+    render() {
+        const { passwordField } = this.state;
+        const value = passwordField && passwordField.value;
+        return (
+            <PasswordInput
+                name="passwordField"
+                placeholder="Password"
+                value={value}
+                showBar={true}
+                onChange={this.handleChange}
+            />
+        )
+    }
 }
-
-export default App;
